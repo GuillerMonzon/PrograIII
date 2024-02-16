@@ -1,0 +1,95 @@
+class Nodo:
+    def __init__(self, nombre, apellido, carnet):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.carnet = carnet
+        self.anterior = None
+        self.siguiente = None
+
+class ListaDoblementeEnlazada:
+    def __init__(self):
+        self.inicio = None
+        self.fin = None
+
+    def insertar_al_principio(self, nombre, apellido, carnet):
+        nuevo_nodo = Nodo(nombre, apellido, carnet)
+        if not self.inicio:
+            self.inicio = nuevo_nodo
+            self.fin = nuevo_nodo
+        else:
+            nuevo_nodo.siguiente = self.inicio
+            self.inicio.anterior = nuevo_nodo
+            self.inicio = nuevo_nodo
+
+    def insertar_al_final(self, nombre, apellido, carnet):
+        nuevo_nodo = Nodo(nombre, apellido, carnet)
+        if not self.fin:
+            self.inicio = nuevo_nodo
+            self.fin = nuevo_nodo
+        else:
+            nuevo_nodo.anterior = self.fin
+            self.fin.siguiente = nuevo_nodo
+            self.fin = nuevo_nodo
+
+    def eliminar_por_valor(self, carnet):
+        actual = self.inicio
+        while actual:
+            if actual.carnet == carnet:
+                if actual.anterior:
+                    actual.anterior.siguiente = actual.siguiente
+                else:
+                    self.inicio = actual.siguiente
+
+                if actual.siguiente:
+                    actual.siguiente.anterior = actual.anterior
+                else:
+                    self.fin = actual.anterior
+
+                return
+            actual = actual.siguiente
+
+    def mostrar_lista(self):
+        actual = self.inicio
+        lista_str = "None <- "
+        while actual:
+            lista_str += f"{actual.nombre} {actual.apellido} (Carnet: {actual.carnet}) <-> "
+            actual = actual.siguiente
+        lista_str += "None"
+        print(lista_str)
+
+def main():
+    mi_lista = ListaDoblementeEnlazada()
+
+    while True:
+        print("\nMenú:")
+        print("1. Insertar al principio")
+        print("2. Insertar al final")
+        print("3. Eliminar por valor")
+        print("4. Mostrar lista")
+        print("5. Salir")
+
+        opcion = input("Selecciona una opción: ")
+
+        if opcion == "1":
+            nombre = input("Ingresa el nombre: ")
+            apellido = input("Ingresa el apellido: ")
+            carnet = int(input("Ingresa el carnet: "))
+            mi_lista.insertar_al_principio(nombre, apellido, carnet)
+        elif opcion == "2":
+            nombre = input("Ingresa el nombre: ")
+            apellido = input("Ingresa el apellido: ")
+            carnet = int(input("Ingresa el carnet: "))
+            mi_lista.insertar_al_final(nombre, apellido, carnet)
+        elif opcion == "3":
+            carnet = int(input("Ingresa el carnet a eliminar: "))
+            mi_lista.eliminar_por_valor(carnet)
+        elif opcion == "4":
+            mi_lista.mostrar_lista()
+        elif opcion == "5":
+            print("¡Hasta luego!")
+            break
+        else:
+            print("Opción inválida. Inténtalo de nuevo.")
+
+if __name__ == "__main__":
+    main()

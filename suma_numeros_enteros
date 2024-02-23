@@ -1,0 +1,12 @@
+def suma_numeros_enteros(n):
+     
+    Args:
+        n (int): numero entero positivo hasta el cual se desea sumar
+    
+    Returns:
+        int: la suma de los números enteros
+
+    if n == 0:
+        return 0  # Caso base: suma de cero es cero
+    else:
+        return n + suma_numeros_enteros(n - 1)

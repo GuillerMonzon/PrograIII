@@ -1,0 +1,11 @@
+def contar_digitos(numero):
+    Args:
+        numero (int): numero entero del cual se desea contar los digitos
+    Returns:
+        int: cantidad de dígitos en el número.
+    
+    if numero == 0:
+        return 1  
+    elif numero < 0:
+        numero = -numero  
+    return 1 + contar_digitos(numero // 10)

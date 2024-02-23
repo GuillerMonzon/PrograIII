@@ -1,0 +1,35 @@
+import math
+
+def calcular_raiz_cuadrada(numero, aproximacion=1):
+       
+    Args:
+        numero (int): nmero del cual se desea calcular la raíz cuadrada
+aproximacion (int): valor inicial de aproximación 
+
+    Returns:
+        int: raíz cuadrada entera del numero
+    
+    if aproximacion * aproximacion == numero:
+        return aproximacion
+    else:
+        nueva_aproximacion = (aproximacion + numero // aproximacion) // 2
+        return calcular_raiz_cuadrada(numero, nueva_aproximacion)
+
+def raiz_cuadrada_entera(numero):
+    
+    Args:
+        numero (int): nmero del cual se desea calcular la raiz cuadrada
+    
+    Returns:
+        int: La raiz cuadrada entera del numero
+ 
+    if numero < 0:
+        raise ValueError("No es posible calcular la raíz cuadrada de un negativo.")
+    elif numero == 0:
+        return 0
+    else:
+        return calcular_raiz_cuadrada(numero)
+--------------------------------------------------------------------------------------
+numero = 25
+raiz_entera = raiz_cuadrada_entera(numero)
+print(f"La raíz cuadrada entera de {numero} es: {raiz_entera}")

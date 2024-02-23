@@ -1,0 +1,18 @@
+def convertir_a_binario(numero):
+    Args:
+        numero (int): El número entero a convertir
+    Returns:
+        str: La representación binaria del numero
+   
+    if numero == 0:
+        return "0" 
+    elif numero < 0:
+        return "-" + convertir_a_binario(-numero)
+else:
+        return convertir_a_binario(numero // 2) + str(numero % 2)
+
+Funcionamiento:
+
+numero_entero = 42
+representacion_binaria = convertir_a_binario(numero_entero)
+print(f"El número {numero_entero} en binario es: {representacion_binaria}")

@@ -1,0 +1,17 @@
+def convertir_a_decimal(romano):
+    Args:
+        romano (str): numero romano a convertir
+    
+    Returns:
+        int: equivalente en sistema decimal
+    romanos = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    
+    def convertir_recursivo(romano, index):
+        if index == len(romano) - 1:
+            return romanos[romano[index]]
+        elif romanos[romano[index]] < romanos[romano[index + 1]]:
+            return romanos[romano[index + 1]] - romanos[romano[index]] + convertir_recursivo(romano, index + 2)
+        else:
+            return romanos[romano[index]] + convertir_recursivo(romano, index + 1)
+    
+    return convertir_recursivo(romano, 0)
